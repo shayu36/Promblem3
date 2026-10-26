@@ -27,3 +27,4 @@ HIDDEN_SIZE = 128                 # LSTM 隐层维度
 NUM_LAYERS = 2                    # LSTM 层数
 DROPOUT = 0.2
 DEVICE = "cpu"                    # 无 GPU 环境，纯 CPU 训练
+GRU_SEEDS = [0, 1, 2, 3, 4]       # GRU 多种子集成的随机种子

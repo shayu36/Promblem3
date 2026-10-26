@@ -10,14 +10,13 @@ from config import BATCH_SIZE, EPOCHS, LR, PATIENCE, LR_PATIENCE, DEVICE, SEED
 def set_seed(seed=SEED):
     torch.manual_seed(seed)
     np.random.seed(seed)
-    torch.set_num_threads(1)          # 单线程，保证 CPU 训练结果可复现
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
 
 def train_model(model, Xtr, ytr, Xva, yva, epochs=EPOCHS, lr=LR,
-                patience=PATIENCE, device=DEVICE, verbose=True):
-    set_seed()
+                patience=PATIENCE, device=DEVICE, verbose=True, seed=SEED):
+    set_seed(seed)
     model = model.to(device)
     opt = torch.optim.Adam(model.parameters(), lr=lr)
     sched = torch.optim.lr_scheduler.ReduceLROnPlateau(
